@@ -1,17 +1,39 @@
 //Import  css
 import './ReportCard.css';
 
-export function ReportCard() {
+interface IReportCard {
+  username: string;
+  date: string;
+  time: string;
+  address: string;
+  status: string;
+}
+
+export function ReportCard(props: IReportCard): JSX.Element {
     return (
       <>
         <div className='ReportCard'>
-            <div className='underblock'>
-                <div className='Username'>Gauthier Mauche</div>
-                <div className='date'></div>
-                <div className='time'></div>
-                <div className='location'></div>
-                <div className='status'></div>
-            </div>
+
+              <div className='blocktext'>
+                <div className='username'>{props.username}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='date'>{props.date}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='time'>{props.time}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='address'>{props.address}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='status'>{props.status}</div>
+              </div>
+                
         </div>
       </>
     )

@@ -1,18 +1,15 @@
-.ReportCard{
+.Filters{
     margin: 25px;
-    height: 150px;
     background-color: #FFFFFF;
-    border-radius: 25px;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-
-.blocktext{
+.filters-content{
     color: #4E6661;
     font-size: 14px;
     padding: 25px;
+    font-weight: bold;
 }

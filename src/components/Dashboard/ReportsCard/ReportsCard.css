@@ -1,5 +1,5 @@
 .ReportsCard{
-    width: 100%;
+    width: 70%;
     height: 100%;
     margin: 15px;
     background-color: #FFFFFF;
@@ -13,9 +13,4 @@
     color: #4E6661;
     padding: 30px;
     font-size: 30px;
-}
-
-.filters{
-    background-color: red;
-    width: 100%;
 }
