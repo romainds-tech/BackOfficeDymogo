@@ -3,13 +3,21 @@
     background-color: #FFFFFF;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
 .filters-content{
+    display: block;
     color: #4E6661;
     font-size: 14px;
     padding: 25px;
     font-weight: bold;
+    width: 160px;
 }
+
+@media screen and (max-width: 1020px){
+    .Filters{
+        min-width: fit-content;
+    }
+} 

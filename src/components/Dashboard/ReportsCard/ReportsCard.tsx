@@ -19,7 +19,7 @@ export function ReportsCard() {
             
 
           <ReportCard username='Gauthier Mauche #4325' date='12/03/2022' time='12:24:55' address='6 avenue de Genève 74000, Annecy' status='In progress' />
-          <ReportCard username='Gauthier Mauche #4325' date='12/03/2022' time='12:24:55' address='6 avenue de Genève 74000, Annecy' status='In progress' />
+          <ReportCard username='Gauthier Mauche #4325Gauthier Mauche #4325' date='12/03/2022' time='12:24:55' address='6 avenue de Genève 74000, Annecy' status='In progress' />
           <ReportCard username='Gauthier Mauche #4325' date='12/03/2022' time='12:24:55' address='6 avenue de Genève 74000, Annecy' status='In progress' />
 
         </div>

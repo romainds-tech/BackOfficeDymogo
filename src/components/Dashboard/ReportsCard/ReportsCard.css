@@ -1,4 +1,5 @@
 .ReportsCard{
+    display: block;
     width: 70%;
     height: 100%;
     margin: 15px;
@@ -14,3 +15,10 @@
     padding: 30px;
     font-size: 30px;
 }
+
+@media screen and (max-width: 1020px){
+    .ReportsCard{
+        width: 100%;
+        overflow-x: scroll; 
+    }
+} 

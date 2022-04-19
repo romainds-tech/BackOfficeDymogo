@@ -1,5 +1,5 @@
 .Dashboard{
-    width: 100vw;
+    width: 100%;
     height: 100%;
     background: linear-gradient(213.62deg, #FFFFFF -32.57%, rgba(255, 255, 255, 0.819896) 34.78%, rgba(232, 255, 250, 0.74) 147.02%);
 }
@@ -10,4 +10,12 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
+
+@media screen and (max-width: 1020px){
+    .dashboard-content{
+        flex-direction: column;
+        padding: 0px;
+    }
+} 

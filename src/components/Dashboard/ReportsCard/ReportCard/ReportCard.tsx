@@ -10,9 +10,12 @@ interface IReportCard {
 }
 
 export function ReportCard(props: IReportCard): JSX.Element {
+  function openCard(){
+    console.log("Open card");
+  }
     return (
       <>
-        <div className='ReportCard'>
+        <div className='ReportCard' onClick={openCard} >
 
               <div className='blocktext'>
                 <div className='username'>{props.username}</div>
