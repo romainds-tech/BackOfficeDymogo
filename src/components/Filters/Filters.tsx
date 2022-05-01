@@ -11,8 +11,8 @@ export function Filters(props: IFilters): JSX.Element {
               {props.list.map((item: string) => {
                 return (
 
-                  <div className='filters-content'>
-                    <div className='filters-item'>{item}</div>
+                  <div className='Filters-content'>
+                    <div className='Filters-item'>{item}</div>
                   </div>
 
                 )
