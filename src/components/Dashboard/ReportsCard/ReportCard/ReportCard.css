@@ -8,16 +8,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
 
 .blocktext{
     display: block;
     color: #4E6661;
-    font-size: 14px;
+    font-size: 20px;
     padding: 25px;
     width: 160px;
 }
+
 @media screen and (max-width: 1020px){
     .ReportCard{
         min-width: fit-content;

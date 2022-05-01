@@ -1,24 +1,24 @@
-.Filters{
-    margin: 25px;
+.Sorts{
+    margin: 25px 25px 0px 25px;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     padding-right: 20px;
 }
 
-.Filters-content{
+.Sorts-content{
     display: block;
     color: #4E6661;
     font-size: 20px;
-    padding: 10px;
-    margin: 10px;
-    background-color: lightgrey;
-    border-radius: 17px;
+    padding: 25px;
+    font-weight: bold;
+    width: 160px;
 }
 
 @media screen and (max-width: 1020px){
-    .Filters{
+    .Sorts{
         min-width: fit-content;
     }
 } 

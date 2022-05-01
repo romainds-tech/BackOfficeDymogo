@@ -1,24 +1,31 @@
 .ReportsCard{
     display: block;
-    width: 70%;
+    width: 100%;
     height: 100%;
     margin: 15px;
     background-color: #FFFFFF;
     border-radius: 25px;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
     text-align: left;
+    overflow: hidden;
 }
 
 .bigTitle{
     display: block;
     color: #4E6661;
     padding: 30px;
-    font-size: 30px;
+    font-size: 50px;
 }
 
-@media screen and (max-width: 1020px){
+@media screen and (max-width: 1260px){
     .ReportsCard{
         width: 100%;
-        overflow-x: scroll; 
     }
+
 } 
+
+.reports{
+    height: 100%;
+    overflow: scroll;
+}
+    
