@@ -4,6 +4,10 @@ import './ReportCard.css';
 
 import { ReportBlueSvg } from './reportcolor/ReportBlueSvg';
 import { ReportGreenSvg } from './reportcolor/ReportGreenSvg';
+import {ReportYellowSvg} from "./reportcolor/ReportYellowSvg";
+import {ReportCyanSvg} from "./reportcolor/ReportCyanSvg";
+import {ReportDymogoColorSvg} from "./reportcolor/ReportDymogoColorSvg";
+import {ReportGreySvg} from "./reportcolor/ReportGreySvg";
 
 interface IReportCard {
   username: string;
@@ -57,7 +61,7 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
               <div className='status'>{this.state.status}</div>
             </div>
             {
-              (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "waste") ? (<ReportGreenSvg />) : (<ReportGreenSvg />)
+              (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "autre") ? (<ReportYellowSvg />) : (this.state.type === "dechet") ? (<ReportCyanSvg />) : (this.state.type === "egout") ? (<ReportGreenSvg />) : (this.state.type === "graffiti") ? (<ReportDymogoColorSvg />) : (<ReportGreySvg />)
             }
           </div>
         </>

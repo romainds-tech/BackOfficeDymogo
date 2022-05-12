@@ -12,12 +12,12 @@ import {Component, h} from 'preact';
 
 const sortlist = ["User", "Date", "Time", "Location", "Status"];
 
-const filterslist = ["All", "Bad Park", "Waste", "Graffiti", "Sewer", "Other"];
+const filterslist = ["All", "Voiture", "Dechet", "Graffiti", "Egout", "Autre"];
 
 export class ReportsCard extends Component<{},{reports: any[]}> {
 
     componentDidMount() {
-        axios.get(`http://ec2-15-236-19-158.eu-west-3.compute.amazonaws.com:8001/api/reports/`, {timeout: 5000})
+        axios.get(`http://ec2-35-181-61-215.eu-west-3.compute.amazonaws.com:8001/api/reports/`, {timeout: 5000})
             .then(res => {
                 let retrurnvalue = JSON.parse(res.request.response)
                 console.log(retrurnvalue)
@@ -49,7 +49,7 @@ export class ReportsCard extends Component<{},{reports: any[]}> {
                                            address={report.location_link.latitude.toString()}
                                            status={report.status}
                                            type={report.type} />
-                    })) : (<div class="lds-ripple"><div></div><div></div></div>)
+                    })) : (<div class="lds-ripple"></div>)
                     }
 
                 </div>
