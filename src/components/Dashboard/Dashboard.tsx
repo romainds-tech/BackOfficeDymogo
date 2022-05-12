@@ -2,7 +2,7 @@
 import './Dashboard.css';
 // Import profileCard
 import { ProfileCard } from './ProfileCard/ProfileCard';
-import { ReportsCard } from './ReportsCard/ReportsCard';
+import {ReportsCard} from "./ReportsCard/ReportsCard";
 
 
 

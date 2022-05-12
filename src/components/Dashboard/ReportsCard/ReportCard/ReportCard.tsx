@@ -1,4 +1,5 @@
 //Import  css
+import { Component } from 'preact';
 import './ReportCard.css';
 
 import { ReportBlueSvg } from './reportcolor/ReportBlueSvg';
@@ -13,33 +14,54 @@ interface IReportCard {
   type: string;
 }
 
-export function ReportCard(props: IReportCard): JSX.Element {
-  function openCard(){
-    console.log("Open card");
+function openCard(){
+  console.log("Open card");
+}
+
+export default class ReportCard extends Component<IReportCard, IReportCard>  {
+
+  constructor(props: IReportCard) {
+    super(props);
+    this.state = {
+      username: props.username,
+      date: props.date,
+      time: props.time,
+      address: props.address,
+      status: props.status,
+      type: props.type,
+    }
   }
+
+
+  render() {
     return (
-      <>
-        <div className='ReportCard' onClick={openCard} >
-          <div className='blocktext'>
-            <div className='username'>{props.username}</div>
-          </div>
+        <>
+          <div className='ReportCard' onClick={openCard} >
+            <div className='blocktext'>
+              <div className='username'>{this.state.username}</div>
+            </div>
 
-          <div className='blocktext'>
-            <div className='date'>{props.date}</div>
-          </div>
+            <div className='blocktext'>
+              <div className='date'>{this.state.date.substring(0,10)}</div>
+            </div>
 
-          <div className='blocktext'>
-            <div className='time'>{props.time}</div>
-          </div>
+            <div className='blocktext'>
+              <div className='time'>{this.state.time.substring(11,19)}</div>
+            </div>
 
-          <div className='blocktext'>
-            <div className='address'>{props.address}</div>
-          </div>
+            <div className='blocktext'>
+              <div className='address'>{this.state.address.toString().substring(0,5)}</div>
+            </div>
 
-          <div className='blocktext'>
-            <div className='status'>{props.status}</div>
+            <div className='blocktext'>
+              <div className='status'>{this.state.status}</div>
+            </div>
+            {
+              (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "waste") ? (<ReportGreenSvg />) : (<ReportGreenSvg />)
+            }
           </div>
-        </div>
-      </>
+        </>
     )
   }
+
+}
