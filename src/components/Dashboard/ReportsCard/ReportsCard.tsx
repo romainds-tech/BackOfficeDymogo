@@ -12,12 +12,12 @@ import {Component} from 'react';
 
 const sortlist = ["User", "Date", "Time", "Location", "Status"];
 
-const filterslist = ["All", "Voiture", "Dechet", "Graffiti", "Egout", "Autre"];
+const filtreslist = ["All", "Voiture", "Dechet", "Graffiti", "Egout", "Autre"];
 
 export class ReportsCard extends Component<{},{reports: any[]}> {
 
     componentDidMount() {
-        axios.get(`http://ec2-35-181-61-215.eu-west-3.compute.amazonaws.com:8001/api/reports/`, {timeout: 5000})
+        axios.get(`http://ec2-35-180-126-153.eu-west-3.compute.amazonaws.com:8001/api/reports/`, {timeout: 5000})
             .then(res => {
                 let retrurnvalue = JSON.parse(res.request.response)
                 console.log(retrurnvalue)
@@ -37,20 +37,16 @@ export class ReportsCard extends Component<{},{reports: any[]}> {
             <div className='ReportsCard'>
                 <div className='bigTitle'>Reports</div>
 
-                <Filters list={filterslist}></Filters>
+                <Filters list={filtreslist}></Filters>
 
                 <Sorts list={sortlist} />
 
                 <div className='reports'>
-                    { (this.state.reports) ? (this.state.reports.map(report => {
-                        return <ReportCard username="Undefined"
-                                           date={report.created}
-                                           time={report.created}
-                                           address={report.location_link.latitude.toString()}
-                                           status={report.status}
-                                           type={report.type} />
-                    })) : (<div className="lds-ripple"></div>)
-                    }
+
+                    { (this.state && this.state.reports) ? this.state.reports.map((report, index) => {
+                        return <ReportCard key={report.uuid} date={report.created} time={report.created} address={report.location_link.latitude} status={report.status} type={report.type} username='Undefined' />
+
+                    }) : "ERROR"}
 
                 </div>
             </div>

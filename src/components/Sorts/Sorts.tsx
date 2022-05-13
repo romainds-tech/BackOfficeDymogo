@@ -11,7 +11,7 @@ export function Sorts(props: ISorts): JSX.Element {
               {props.list.map((item: string) => {
                 return (
 
-                  <div className='Sorts-content'>
+                  <div key={item} className='Sorts-content'>
                     <div className='Sorts-item'>{item}</div>
                   </div>
 
