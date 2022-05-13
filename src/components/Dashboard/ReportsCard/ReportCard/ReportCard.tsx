@@ -1,5 +1,5 @@
 //Import  css
-import { Component } from 'preact';
+import { Component } from 'react';
 import './ReportCard.css';
 
 import { ReportBlueSvg } from './reportcolor/ReportBlueSvg';

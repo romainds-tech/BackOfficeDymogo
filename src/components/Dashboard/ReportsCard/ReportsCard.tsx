@@ -8,7 +8,7 @@ import { Sorts } from '../../Sorts/Sorts';
 import { Filters } from '../../Filters/Filters';
 
 import axios from 'axios';
-import {Component, h} from 'preact';
+import {Component} from 'react';
 
 const sortlist = ["User", "Date", "Time", "Location", "Status"];
 
@@ -49,7 +49,7 @@ export class ReportsCard extends Component<{},{reports: any[]}> {
                                            address={report.location_link.latitude.toString()}
                                            status={report.status}
                                            type={report.type} />
-                    })) : (<div class="lds-ripple"></div>)
+                    })) : (<div className="lds-ripple"></div>)
                     }
 
                 </div>
