@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './LoginPage.css';
+import {AiOutlineEyeInvisible, AiOutlineUser, AiTwotoneLock} from "react-icons/all";
 
 class LoginPage extends Component {
     render() {
@@ -17,9 +18,15 @@ class LoginPage extends Component {
                                     Hello there! Welcome back
                                 </div>
                                 <div className="inputs-list">
-                                    <input className="username" />
-                                    <input className="password" />
+                                    <AiOutlineUser className="usericon"/>
+                                    <input className="inputcred username" placeholder="Username"/>
+                                    <AiTwotoneLock className="lockicon" />
+                                    <input className="inputcred password" placeholder="Password" type="password"/>
+                                    <div className="forgotpassword">Forgot password?</div>
+                                    <AiOutlineEyeInvisible className="eyeicon"/>
                                 </div>
+
+                                <input className="submitformbutton" type="submit" value="Log in" />
 
 
 

@@ -41,7 +41,6 @@ export class ReportsCard extends Component<{},{reports: any[]}> {
                 <Sorts list={sortlist} />
 
                 <div className='reports'>
-n
                     { (this.state) ? this.state.reports.map((report, index) => {
                         return <ReportCard key={report.uuid} date={report.created} time={report.created} address={report.location_link.latitude} status={report.status} type={report.type} username='Undefined' />
 
