@@ -5,8 +5,7 @@ import LoginPage from "./components/Auth/LoginPage";
 export function App() {
   return (
     <>
-    <LoginPage />
-
+    <Dashboard />
     </>
   )
 }

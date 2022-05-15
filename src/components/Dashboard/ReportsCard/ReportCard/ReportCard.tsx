@@ -18,10 +18,6 @@ interface IReportCard {
   type: string;
 }
 
-function openCard(){
-  console.log("Open card");
-}
-
 export default class ReportCard extends Component<IReportCard, IReportCard>  {
 
   constructor(props: IReportCard) {
@@ -40,7 +36,7 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
   render() {
     return (
         <>
-          <div className='ReportCard' onClick={openCard} >
+          <div className='ReportCard' >
             <div className='blocktext'>
               <div className='username'>{this.state.username}</div>
             </div>
@@ -63,6 +59,7 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
             {
               (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "autre") ? (<ReportYellowSvg />) : (this.state.type === "dechet") ? (<ReportCyanSvg />) : (this.state.type === "egout") ? (<ReportGreenSvg />) : (this.state.type === "graffiti") ? (<ReportDymogoColorSvg />) : (<ReportGreySvg />)
             }
+
           </div>
         </>
     )
