@@ -65,6 +65,7 @@ class LoginPage extends Component<boolean, ILoginPage> {
 
 
                                     <div className="iconsshow" onClick={this.showPassword}>
+
                                         {this.state.passwordstate == true ? <AiOutlineEye className="eyeicon" /> : <AiOutlineEyeInvisible className="eyeicon" />}
                                     </div>
 
