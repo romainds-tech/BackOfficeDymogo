@@ -2,6 +2,7 @@ import React, {Component, useState} from 'react';
 import './LoginPage.css';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser, AiTwotoneLock} from "react-icons/all";
 import axios from "axios";
+import { varenvconst } from "../../constants"
 
 export function LoginPage() {
 
@@ -30,7 +31,7 @@ export function LoginPage() {
 
         if (username && password) {
             //conexion a la api
-            axios.post('http://localhost:8002/api/login', {
+            axios.post(`${varenvconst.MICROSERVICEUSER}/login`, {
                 "email": username,
                 "password": password
             }).then(res => {

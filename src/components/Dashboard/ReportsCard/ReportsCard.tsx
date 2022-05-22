@@ -9,10 +9,13 @@ import {Filters} from '../../Filters/Filters';
 
 import axios from 'axios';
 import {useEffect, useState} from "react";
+import {varenvconst} from "../../../constants";
+
 
 const sortlist = ["User", "Date", "Time", "Location", "Status"];
 
 const filtreslist = ["All", "Voiture", "Dechet", "Graffiti", "Egout", "Autre"];
+import { varenvconst } from "../../../constants";
 
 interface IReport{
     uuid: string;
@@ -32,7 +35,13 @@ export function ReportsCard(){
     const [reports, setReports] = useState([]);
 
     const getReports = () => {
-        axios.get(`http://localhost:8001/api/reports/`)
+
+        axios.get(`${varenvconst.MICROSERVICEREPORT}/reports/`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => {
             console.log(JSON.parse(res.request.response))
             setReports(JSON.parse(res.request.response))
