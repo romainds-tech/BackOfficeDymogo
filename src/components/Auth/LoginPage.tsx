@@ -1,57 +1,69 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import './LoginPage.css';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser, AiTwotoneLock} from "react-icons/all";
+import axios from "axios";
 
-interface ILoginPage {
-    passwordstate: boolean;
-}
+export function LoginPage() {
 
-class LoginPage extends Component<boolean, ILoginPage> {
+    const [password, setPassword] = useState(false);
 
-    constructor(props: boolean) {
-        super(props);
-        this.state = {
-            passwordstate: false
-        }
-    }
 
     //Toggle password visibility and toggle input field password to text
-    showPassword = () => {
-        this.setState({
-            passwordstate: !this.state.passwordstate
-        })
-
-        let input = document.querySelector('.password') as HTMLInputElement;
-
-        if (input.type === 'password') {
-            input.type = 'text'
+    const togglePasswordVisibility = () => {
+        const passwordInput = document.querySelector('.password');
+        if (passwordInput) {
+            if (password === false) {
+                passwordInput.type = 'text';
+                setPassword(true);
+            } else {
+                passwordInput.type = 'password';
+                setPassword(false);
+            }
         }
-        else {
-            input.type = 'password'
+    }
+
+    //conexion a la api
+    const login = () => {
+        const username = document.querySelector('.username').value;
+        const password = document.querySelector('.password').value;
+        console.log(username, password)
+
+        if (username && password) {
+            //conexion a la api
+            axios.post('http://localhost:8002/api/login', {
+                "email": username,
+                "password": password
+            }).then(res => {
+                console.log(res.data)
+                if (res.data.jwt) {
+                    localStorage.setItem('token', res.data.jwt)
+                    window.location.href = '/'
+                }
+            }).catch(err => {
+                console.log(err.response)
+            })
         }
     }
 
 
-
-    render() {
-        return (
-            <div>
-                <div className="login-page">
-                    <div className="left-side-first">
-                        <div className="left-side-second">
-                            <div className="bandeau">
-                                <img src="../../static/Dymogo.svg" alt=""/>
-                            </div>
-                            <div className="logo">
-                                <img src="../../static/Logologinpage.svg" alt="logo"/>
-                            </div>
-                            <div className="rightreserved">
-                                Copyright &copy; 2022. Dymogo. All rights reserved.
-                            </div>
+    return (
+        <>
+            <div className="login-page">
+                <div className="left-side-first">
+                    <div className="left-side-second">
+                        <div className="bandeau">
+                            <img src="../../static/Dymogo.svg" alt=""/>
+                        </div>
+                        <div className="logo">
+                            <img src="../../static/Logologinpage.svg" alt="logo"/>
+                        </div>
+                        <div className="rightreserved">
+                            Copyright &copy; 2022. Dymogo. All rights reserved.
                         </div>
                     </div>
-                    <div className="right-side-first">
-                        <div className="right-side-second">
+                </div>
+                <div className="right-side-first">
+                    <div className="right-side-second">
                             <div className="login-form">
                                 <div className="login-title">
                                     Hello there! Welcome back
@@ -59,30 +71,29 @@ class LoginPage extends Component<boolean, ILoginPage> {
                                 <div className="inputs-list">
                                     <AiOutlineUser className="usericon"/>
                                     <input className="inputcred username" placeholder="Username"/>
-                                    <AiTwotoneLock className="lockicon" />
+                                    <AiTwotoneLock className="lockicon"/>
                                     <input className="inputcred password" placeholder="Password" type="password"/>
-                                    <div className="forgotpassword"> <a href="">Forgot password?</a></div>
+                                    <div className="forgotpassword"><a href="">Forgot password?</a></div>
 
 
-                                    <div className="iconsshow" onClick={this.showPassword}>
-
-                                        {this.state.passwordstate == true ? <AiOutlineEye className="eyeicon" /> : <AiOutlineEyeInvisible className="eyeicon" />}
+                                    <div className="iconsshow" onClick={togglePasswordVisibility}>
+                                        {password == true ? <AiOutlineEye className="eyeicon"/> :
+                                            <AiOutlineEyeInvisible className="eyeicon"/>}
                                     </div>
 
                                 </div>
 
-                                <input className="submitformbutton" type="submit" value="Log in" />
+                                <input className="submitformbutton" type="submit" onClick={login} value="Log in"/>
 
 
                             </div>
-                        </div>
                     </div>
-
                 </div>
 
             </div>
-        );
-    }
+
+        </>
+    );
 }
 
 export default LoginPage;

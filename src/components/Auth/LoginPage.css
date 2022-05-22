@@ -101,6 +101,12 @@
     height: 60px;
     background: linear-gradient(90deg, #5CE5C9 0%, #98FAE6 100%);
     color: white;
+    transition: 0.3s;
+    animation-duration: 0.3s;
+    cursor: pointer;
+}
+.submitformbutton:hover{
+    background: linear-gradient(-90deg, #5CE5C9 0%, #98FAE6 100%);
 }
 
 .forgotpassword{
