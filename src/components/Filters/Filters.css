@@ -7,13 +7,34 @@
     padding-right: 20px;
 }
 
+.All{
+    background-color: lightgrey;
+}
+
+.Voiture{
+    background-color: #B0D1F0;
+}
+
+.Autre{
+    background-color: #EAFFBD;
+}
+.Dechet{
+    background-color: #9CF9FF;
+}
+
+.Egout{
+    background-color: #B5FFC5;
+}
+.Graffiti{
+    background-color: #4EFFDA;
+}
+
 .Filters-content{
     display: block;
     color: #4E6661;
     font-size: 20px;
     padding: 10px;
     margin: 10px;
-    background-color: lightgrey;
     border-radius: 17px;
 }
 

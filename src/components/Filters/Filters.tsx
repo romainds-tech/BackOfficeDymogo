@@ -1,23 +1,30 @@
 import './Filters.css';
+import React from "react";
 
 interface IFilters {
-    list: Array<string>;
+    mylist: Array<string>;
 }
 
-export function Filters(props: IFilters): JSX.Element {
-    return (
-      <>
-        <div className='Filters'>
-              {props.list.map((item: string) => {
-                return (
+export function Filters(props: IFilters, toparent: string) {
 
-                  <div className='Filters-content'>
-                    <div className='Filters-item'>{item}</div>
-                  </div>
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        // send event to parent
+        props.mylist.push(toparent);
+    };
 
-                )
-              })}
-        </div>
-      </>
-    )
+        return (
+            <>
+                <div className='Filters'>
+                    {props.mylist.map((item: string) => {
+                        return (
+                            <div key={item}
+                                 className={`Filters-content ${item}`}
+                                onClick={handleClick}>
+                                <div className='Filters-item'>{item}</div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </>
+        )
   }

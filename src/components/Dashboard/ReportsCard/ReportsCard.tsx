@@ -3,58 +3,81 @@ import './ReportsCard.css';
 import ReportCard from './ReportCard/ReportCard';
 
 //Import Badge
-import { Sorts } from '../../Sorts/Sorts';
+import {Sorts} from '../../Sorts/Sorts';
 
-import { Filters } from '../../Filters/Filters';
+import {Filters} from '../../Filters/Filters';
 
 import axios from 'axios';
-import {Component, h} from 'preact';
+import {useEffect, useState} from "react";
+import {varenvconst} from "../../../constants";
+
 
 const sortlist = ["User", "Date", "Time", "Location", "Status"];
 
-const filterslist = ["All", "Bad Park", "Waste", "Graffiti", "Sewer", "Other"];
+const filtreslist = ["All", "Voiture", "Dechet", "Graffiti", "Egout", "Autre"];
+import { varenvconst } from "../../../constants";
 
-export class ReportsCard extends Component<{},{reports: any[]}> {
+interface IReport{
+    uuid: string;
+    created: string;
+    time: string;
+    location_link: {
+        latitude: string;
+        longitude: string;
+    };
+    status: string;
+    type: string;
+    username: string;
+}
 
-    componentDidMount() {
-        axios.get(`http://ec2-15-236-19-158.eu-west-3.compute.amazonaws.com:8001/api/reports/`, {timeout: 5000})
-            .then(res => {
-                let retrurnvalue = JSON.parse(res.request.response)
-                console.log(retrurnvalue)
-                return retrurnvalue
-            }).then(data => {
-            this.setState({
-                reports: data
-            });
+export function ReportsCard(){
+
+    const [reports, setReports] = useState([]);
+
+    const getReports = () => {
+
+        axios.get(`${varenvconst.MICROSERVICEREPORT}/reports/`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => {
+            console.log(JSON.parse(res.request.response))
+            setReports(JSON.parse(res.request.response))
         }).catch(err => {
-            return err
+            setReports([])
         })
     }
 
+    useEffect(() => {
+        getReports()
+    }, [])
 
-    render() {
+    // function to filter reports by type on click
+    function filterReports(type: string){
+        console.log("hello")
+    }
+
         return (
             <div className='ReportsCard'>
                 <div className='bigTitle'>Reports</div>
 
-                <Filters list={filterslist}></Filters>
-
-                <Sorts list={sortlist} />
+                <Filters mylist={filtreslist} />
+                <Sorts list={sortlist}/>
 
                 <div className='reports'>
-                    { (this.state.reports) ? (this.state.reports.map(report => {
-                        return <ReportCard username="Undefined"
-                                           date={report.created}
-                                           time={report.created}
-                                           address={report.location_link.latitude.toString()}
-                                           status={report.status}
-                                           type={report.type} />
-                    })) : (<div class="lds-ripple"><div></div><div></div></div>)
-                    }
+                    {(reports != []) ? reports.map((report: IReport, index) => {
+                        return <ReportCard key={report.uuid} date={report.created} time={report.created}
+                                           address={report.location_link.latitude} status={report.status}
+                                           type={report.type} username='Undefined'/>
+
+                    }) : <div className="lds-ripple">
+                        <div></div>
+                    </div>}
 
                 </div>
             </div>
         )
-    }
 
 }

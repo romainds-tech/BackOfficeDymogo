@@ -1,0 +1,145 @@
+.login-page{
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    display: flex;
+}
+
+/* Left-side */
+
+.left-side-first{
+    display: block;
+    width: 50vw;
+    background-color: #F1F9F7;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-side-second{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(196.64deg, #33FCD3 3.19%, #63D5BD 93.57%);
+    border-bottom-right-radius: 150px;
+    position: relative;
+}
+
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bandeau{
+    position: absolute;
+    left: 10%;
+    top: 5%;
+}
+.rightreserved{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+
+
+
+/* Right-side */
+
+.right-side-first{
+    display: block;
+    width: 50vw;
+    height: 100%;
+    background: linear-gradient(-196.64deg, #33FCD3 3.19%, #63D5BD 93.57%);
+}
+
+.right-side-second{
+    height: 100%;
+    width: 100%;
+    background-color: #F1F9F7;
+    border-top-left-radius: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-title{
+    font-size: 3rem;
+    font-weight: bold;
+    color: #61D8C0;
+    margin-bottom: 1rem;
+}
+.inputs-list{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: 0 auto;
+}
+
+.inputcred{
+    margin: 15px;
+    height: 40px;
+    border: none;
+    padding: 30px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: black;
+    padding-left: 50px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+}
+.inputcred::placeholder {
+    color: #ABABAB;
+}
+
+.submitformbutton{
+    border: none;
+    border-radius: 15px;
+    width: 320px;
+    height: 60px;
+    background: linear-gradient(90deg, #5CE5C9 0%, #98FAE6 100%);
+    color: white;
+    transition: 0.3s;
+    animation-duration: 0.3s;
+    cursor: pointer;
+}
+.submitformbutton:hover{
+    background: linear-gradient(-90deg, #5CE5C9 0%, #98FAE6 100%);
+}
+
+.forgotpassword{
+    text-decoration: none;
+    font-size: 14px;
+    color: #ABABAB;
+    text-align: right;
+    margin: 15px;
+    margin-top: -10px;
+}
+
+.forgotpassword:hover{
+    text-decoration: underline;
+}
+
+.lockicon, .usericon, .eyeicon, .eyeiconbarre{
+    position: absolute;
+    left: 25px;
+    color: #ABABAB;
+}
+.lockicon{
+    top: 122px;
+}
+.usericon{
+    top: 30px;
+}
+.eyeicon, .eyeiconbarre{
+    top: 124px;
+    left: 290px;
+}
+
+.iconsshow:hover{
+    cursor: pointer;
+}
+
+

@@ -1,9 +1,13 @@
 //Import  css
-import { Component } from 'preact';
+import { Component } from 'react';
 import './ReportCard.css';
 
 import { ReportBlueSvg } from './reportcolor/ReportBlueSvg';
 import { ReportGreenSvg } from './reportcolor/ReportGreenSvg';
+import {ReportYellowSvg} from "./reportcolor/ReportYellowSvg";
+import {ReportCyanSvg} from "./reportcolor/ReportCyanSvg";
+import {ReportDymogoColorSvg} from "./reportcolor/ReportDymogoColorSvg";
+import {ReportGreySvg} from "./reportcolor/ReportGreySvg";
 
 interface IReportCard {
   username: string;
@@ -12,10 +16,6 @@ interface IReportCard {
   address: string;
   status: string;
   type: string;
-}
-
-function openCard(){
-  console.log("Open card");
 }
 
 export default class ReportCard extends Component<IReportCard, IReportCard>  {
@@ -36,7 +36,7 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
   render() {
     return (
         <>
-          <div className='ReportCard' onClick={openCard} >
+          <div className='ReportCard' >
             <div className='blocktext'>
               <div className='username'>{this.state.username}</div>
             </div>
@@ -57,8 +57,9 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
               <div className='status'>{this.state.status}</div>
             </div>
             {
-              (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "waste") ? (<ReportGreenSvg />) : (<ReportGreenSvg />)
+              (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "autre") ? (<ReportYellowSvg />) : (this.state.type === "dechet") ? (<ReportCyanSvg />) : (this.state.type === "egout") ? (<ReportGreenSvg />) : (this.state.type === "graffiti") ? (<ReportDymogoColorSvg />) : (<ReportGreySvg />)
             }
+
           </div>
         </>
     )
