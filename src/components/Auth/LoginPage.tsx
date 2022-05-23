@@ -1,44 +1,59 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import './LoginPage.css';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser, AiTwotoneLock} from "react-icons/all";
+import PropTypes from 'prop-types';
+import Redirect from 'react-router-dom';
 import axios from "axios";
-import { varenvconst } from "../../constants"
+import {varenvconst} from "../../constants"
 
-export function LoginPage() {
+interface ILoginPage {
+    setToken: any
+}
 
-    const [password, setPassword] = useState(false);
 
+export function LoginPage(props: ILoginPage) {
+
+    const [passwordstate, setPasswordstate] = useState(false);
+
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+
+    const handleChangePassword = (event: any) => {
+        setPassword(event.target.value);
+    }
+    const handleChangeUsername = (event: any) => {
+        setUsername(event.target.value);
+    }
 
     //Toggle password visibility and toggle input field password to text
     const togglePasswordVisibility = () => {
         const passwordInput = document.querySelector('.password');
+
         if (passwordInput) {
-            if (password === false) {
+            if (passwordstate === false) {
                 passwordInput.type = 'text';
-                setPassword(true);
+                setPasswordstate(true);
             } else {
                 passwordInput.type = 'password';
-                setPassword(false);
+                setPasswordstate(false);
             }
         }
     }
 
-    //conexion a la api
-    const login = () => {
-        const username = document.querySelector('.username').value;
-        const password = document.querySelector('.password').value;
-        console.log(username, password)
 
+
+    //conexion a la api
+    const login = async () => {
         if (username && password) {
             //conexion a la api
-            axios.post(`${varenvconst.MICROSERVICEUSER}/login`, {
+            console.log("start")
+            await axios.post(`${varenvconst.MICROSERVICEUSER}/login`, {
                 "email": username,
                 "password": password
             }).then(res => {
-                console.log(res.data)
                 if (res.data.jwt) {
                     localStorage.setItem('token', res.data.jwt)
-                    window.location.href = '/'
+                    props.setToken(res.data.jwt);
                 }
             }).catch(err => {
                 console.log(err.response)
@@ -71,21 +86,20 @@ export function LoginPage() {
                                 </div>
                                 <div className="inputs-list">
                                     <AiOutlineUser className="usericon"/>
-                                    <input className="inputcred username" placeholder="Username"/>
+                                    <input className="inputcred username" placeholder="Username" onInput={handleChangeUsername}/>
                                     <AiTwotoneLock className="lockicon"/>
-                                    <input className="inputcred password" placeholder="Password" type="password"/>
+                                    <input className="inputcred password" placeholder="Password" type="password" onInput={handleChangePassword}/>
                                     <div className="forgotpassword"><a href="">Forgot password?</a></div>
 
 
                                     <div className="iconsshow" onClick={togglePasswordVisibility}>
-                                        {password == true ? <AiOutlineEye className="eyeicon"/> :
+                                        {passwordstate == true ? <AiOutlineEye className="eyeicon"/> :
                                             <AiOutlineEyeInvisible className="eyeicon"/>}
                                     </div>
 
                                 </div>
 
                                 <input className="submitformbutton" type="submit" onClick={login} value="Log in"/>
-
 
                             </div>
                     </div>
@@ -97,4 +111,7 @@ export function LoginPage() {
     );
 }
 
+LoginPage.propTypes = {
+    setToken: PropTypes.func.isRequired
+};
 export default LoginPage;
