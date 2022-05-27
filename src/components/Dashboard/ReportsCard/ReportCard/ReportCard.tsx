@@ -11,8 +11,8 @@ import {ReportGreySvg} from "./reportcolor/ReportGreySvg";
 
 interface IReportCard {
   username: string;
-  date: string;
-  time: string;
+  date: Date;
+  time: Date;
   address: string;
   status: string;
   type: string;
@@ -42,15 +42,15 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
             </div>
 
             <div className='blocktext'>
-              <div className='date'>{this.state.date.substring(0,10)}</div>
+              <div className='date'>{new Date(this.state.date).toString()}</div>
             </div>
 
             <div className='blocktext'>
-              <div className='time'>{this.state.time.substring(11,19)}</div>
+              <div className='time'>{new Date(this.state.time).toLocaleTimeString('fr-FR')}</div>
             </div>
 
             <div className='blocktext'>
-              <div className='address'>{this.state.address.toString().substring(0,5)}</div>
+              <div className='address'>{this.state.address}</div>
             </div>
 
             <div className='blocktext'>

@@ -11,6 +11,9 @@
     overflow: hidden;
 }
 
+.address{
+    font-size: 16px;
+}
 
 .blocktext{
     display: block;
