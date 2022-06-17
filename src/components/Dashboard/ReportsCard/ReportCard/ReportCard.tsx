@@ -18,7 +18,15 @@ interface IReportCard {
   type: string;
 }
 
+// toggle class to expand the ReportCard
+const expand = (e: any) => {
+    console.log(e.currentTarget)
+    e.currentTarget.classList.toggle('expand');
+}
+
+
 export default class ReportCard extends Component<IReportCard, IReportCard>  {
+
 
   constructor(props: IReportCard) {
     super(props);
@@ -36,29 +44,40 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
   render() {
     return (
         <>
-          <div className='ReportCard' >
-            <div className='blocktext'>
-              <div className='username'>{this.state.username}</div>
+          <div className='ReportCard' onClick={expand} >
+
+            <div className="top">
+              <div className='blocktext'>
+                <div className='username'>{this.state.username}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='date'>{new Date(this.state.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='time'>{new Date(this.state.time).toLocaleTimeString('fr-FR')}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='address'>{this.state.address}</div>
+              </div>
+
+              <div className='blocktext'>
+                <div className='status'>{this.state.status}</div>
+              </div>
+              {
+                (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "autre") ? (<ReportYellowSvg />) : (this.state.type === "dechet") ? (<ReportCyanSvg />) : (this.state.type === "egout") ? (<ReportGreenSvg />) : (this.state.type === "graffiti") ? (<ReportDymogoColorSvg />) : (<ReportGreySvg />)
+              }
             </div>
 
-            <div className='blocktext'>
-              <div className='date'>{new Date(this.state.date).toString()}</div>
+            <div className="bottom">
+
             </div>
 
-            <div className='blocktext'>
-              <div className='time'>{new Date(this.state.time).toLocaleTimeString('fr-FR')}</div>
-            </div>
 
-            <div className='blocktext'>
-              <div className='address'>{this.state.address}</div>
-            </div>
 
-            <div className='blocktext'>
-              <div className='status'>{this.state.status}</div>
-            </div>
-            {
-              (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "autre") ? (<ReportYellowSvg />) : (this.state.type === "dechet") ? (<ReportCyanSvg />) : (this.state.type === "egout") ? (<ReportGreenSvg />) : (this.state.type === "graffiti") ? (<ReportDymogoColorSvg />) : (<ReportGreySvg />)
-            }
+
 
           </div>
         </>

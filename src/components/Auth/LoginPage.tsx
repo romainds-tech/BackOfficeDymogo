@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 import axios from "axios";
 import {varenvconst} from "../../constants"
 import {useNavigate} from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 
 async function loginUser(credentials: any) {
-    return axios.post(`${varenvconst.MICROSERVICEUSER}/login`, {
+    return axios.post(`${varenvconst.APIGATEWAY}login`, {
         "email": credentials.username,
         "password": credentials.password
-    }) .then(data => data.data)
+    }).then(data => data.data)
 }
 
 
@@ -46,30 +47,45 @@ export function LoginPage() {
         }
     }
 
+    function isTokenExpired(token: any) {
+        let decoded:any = jwt_decode(token);
+        let currentTime:any = Date.now() / 1000;
+
+        if (decoded.exp < currentTime) {
+            return true;
+        }
+        return false;
+    }
+
     useEffect(() => {
         trygetToken()
     }, []);
 
     const trygetToken = () => {
-        try {
-            let token = localStorage.getItem('token')
-            if (token) {
+        if(localStorage.getItem('token')){
+            if(!isTokenExpired(localStorage.getItem('token')))
+            {
                 navigate('/dashboard')
             }
-        } catch{}
+            else {
+                navigate('/')
+            }
+        }
+        else {
+            navigate('/')
+        }
 
     }
 
 
     const handleSubmit = async (e: any) => {
-        e.preventDefault();
         const token = await loginUser({
             username,
             password
         });
 
+
         if (token.jwt) {
-            console.log("jwt : ", token.jwt)
             localStorage.setItem('token', token.jwt);
             navigate('/dashboard')
         }
@@ -94,7 +110,7 @@ export function LoginPage() {
                 </div>
                 <div className="right-side-first">
                     <div className="right-side-second">
-                        <form onSubmit={handleSubmit}>
+                        <div>
                             <div className="login-form">
                                 <div className="login-title">
                                     Hello there! Welcome back
@@ -116,10 +132,10 @@ export function LoginPage() {
 
                                 </div>
 
-                                <input className="submitformbutton" type="submit" value="Log in"/>
+                                <button className="submitformbutton" onClick={handleSubmit}>Log in</button>
 
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

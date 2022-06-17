@@ -1,4 +1,3 @@
 export const varenvconst = {
-    MICROSERVICEUSER: "http://localhost:8002/api",
-    MICROSERVICEREPORT: "http://localhost:8001/api"
+    APIGATEWAY: "http://13.38.199.53:8000/api/",
 }

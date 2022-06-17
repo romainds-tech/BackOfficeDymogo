@@ -10,9 +10,13 @@
     align-items: center;
     overflow: hidden;
 }
+.expand {
+    height: 350px;
+}
 
 .address{
     font-size: 16px;
+    width: 180px;
 }
 
 .blocktext{
@@ -26,5 +30,8 @@
 @media screen and (max-width: 1020px){
     .ReportCard{
         min-width: fit-content;
+    }
+    .address{
+        width: 160px;
     }
 } 
