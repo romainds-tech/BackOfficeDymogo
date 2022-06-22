@@ -6,6 +6,6 @@
 .ReportSvg svg {
     position: absolute;
     right: 0px;
-    top: -60px;
+    top: 5px;
     border-radius: 25px;
 }

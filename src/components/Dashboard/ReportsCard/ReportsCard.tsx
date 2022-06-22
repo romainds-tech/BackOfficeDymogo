@@ -94,7 +94,7 @@ export function ReportsCard(){
                     {(reports != []) ? reports.map((report: IReport, index) => {
                         return <ReportCard key={report.uuid} date={report.created} time={report.created}
                                            address={report.location_link.adress} status={report.status}
-                                           type={report.type} username='Undefined'/>
+                                           type={report.type} username='Undefined' uuid={report.uuid}/>
 
                     }) : <div className="lds-ripple">
                         <div></div>

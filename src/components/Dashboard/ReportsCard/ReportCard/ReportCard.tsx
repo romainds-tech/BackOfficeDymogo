@@ -8,6 +8,9 @@ import {ReportYellowSvg} from "./reportcolor/ReportYellowSvg";
 import {ReportCyanSvg} from "./reportcolor/ReportCyanSvg";
 import {ReportDymogoColorSvg} from "./reportcolor/ReportDymogoColorSvg";
 import {ReportGreySvg} from "./reportcolor/ReportGreySvg";
+import axios from "axios";
+import {varenvconst} from "../../../../constants";
+
 
 interface IReportCard {
   username: string;
@@ -16,12 +19,57 @@ interface IReportCard {
   address: string;
   status: string;
   type: string;
+  uuid: string;
 }
 
 // toggle class to expand the ReportCard
-const expand = (e: any) => {
-    console.log(e.currentTarget)
-    e.currentTarget.classList.toggle('expand');
+const expand = async (e: any) => {
+    let element = e.currentTarget
+    element.classList.toggle('expand');
+    let image = await getImage(e.currentTarget.id)
+    element.querySelector('img').src = "data:image/png;base64, " + image;
+}
+
+// get image by uuid
+const getImage = async (uuid: string) => {
+
+    return await axios.get(`${varenvconst.APIGATEWAY}user/get_image_report_by_uuid/${uuid}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(res => {
+      return res.request.response;
+    }).catch(e => {
+        return e;
+    })
+
+}
+
+const changeStatus = async (e: any) => {
+
+    console.log(e.currentTarget.id, typeof e.currentTarget.id)
+    console.log(e.currentTarget.value, typeof e.currentTarget.value)
+
+    return await axios.put(`${varenvconst.APIGATEWAY}user/update_report_status/${e.currentTarget.id}`, {
+        "Headers": {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        "Body": {
+            "status": e.currentTarget.value
+        }
+    }).then(res => {
+        console.log(res)
+        return res;
+    }).catch(
+        e => {
+            console.log(e)
+            return e;
+        }
+    )
+
+
 }
 
 
@@ -37,6 +85,7 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
       address: props.address,
       status: props.status,
       type: props.type,
+      uuid: props.uuid,
     }
   }
 
@@ -44,7 +93,7 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
   render() {
     return (
         <>
-          <div className='ReportCard' onClick={expand} >
+          <div className='ReportCard' id={this.state.uuid} onClick={expand} >
 
             <div className="top">
               <div className='blocktext'>
@@ -64,7 +113,11 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
               </div>
 
               <div className='blocktext'>
-                <div className='status'>{this.state.status}</div>
+                  <select className="status" onChange={changeStatus} id={this.state.uuid}>
+                      <option value={this.state.status}>{this.state.status}</option>
+                      <option value="In progress">In progress</option>
+                      <option value="Resolved">Resolved</option>
+                  </select>
               </div>
               {
                 (this.state.type === "voiture") ? (<ReportBlueSvg />) : (this.state.type === "autre") ? (<ReportYellowSvg />) : (this.state.type === "dechet") ? (<ReportCyanSvg />) : (this.state.type === "egout") ? (<ReportGreenSvg />) : (this.state.type === "graffiti") ? (<ReportDymogoColorSvg />) : (<ReportGreySvg />)
@@ -72,12 +125,10 @@ export default class ReportCard extends Component<IReportCard, IReportCard>  {
             </div>
 
             <div className="bottom">
-
+              <div className="imagereport">
+                <img src=""/>
+              </div>
             </div>
-
-
-
-
 
           </div>
         </>
