@@ -104,7 +104,7 @@ export function LoginPage() {
                             <img src="../../static/Logologinpage.svg" alt="logo"/>
                         </div>
                         <div className="rightreserved">
-                            Copyright &copy; 2022. Dymogo. All rights reserved.
+                            Copyright &copy; 2022. Dymogo. Tous droits réservés.
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ export function LoginPage() {
                         <div>
                             <div className="login-form">
                                 <div className="login-title">
-                                    Hello there! Welcome back
+                                    Bienvenue !
                                 </div>
                                 <div className="inputs-list">
                                     <AiOutlineUser className="usericon"/>
@@ -122,7 +122,7 @@ export function LoginPage() {
                                     <AiTwotoneLock className="lockicon"/>
                                     <input className="inputcred password" placeholder="Password" type="password"
                                            onInput={handleChangePassword}/>
-                                    <div className="forgotpassword"><a href="">Forgot password?</a></div>
+                                    <div className="forgotpassword"><a href="">Mot de passe oublié?</a></div>
 
 
                                     <div className="iconsshow" onClick={togglePasswordVisibility}>
@@ -132,7 +132,7 @@ export function LoginPage() {
 
                                 </div>
 
-                                <button className="submitformbutton" onClick={handleSubmit}>Log in</button>
+                                <button className="submitformbutton" onClick={handleSubmit}>Connexion</button>
 
                             </div>
                         </div>

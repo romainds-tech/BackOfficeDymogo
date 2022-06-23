@@ -14,9 +14,9 @@ import {useNavigate} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 
-const sortlist = ["User", "Date", "Time", "Location", "Status"];
+const sortlist = ["Utilisateur", "Date", "Heure", "Adresse", "Statut"];
 
-const filtreslist = ["All", "Voiture", "Dechet", "Graffiti", "Egout", "Autre"];
+const filtreslist = ["Tous", "Voitures", "Dechets", "Graffitis", "Egouts", "Autres"];
 
 interface IReport{
     uuid: string;
@@ -85,7 +85,7 @@ export function ReportsCard(){
 
         return (
             <div className='ReportsCard'>
-                <div className='bigTitle'>Reports</div>
+                <div className='bigTitle'>Signalements</div>
 
                 <Filters mylist={filtreslist} />
                 <Sorts list={sortlist}/>
@@ -94,7 +94,7 @@ export function ReportsCard(){
                     {(reports != []) ? reports.map((report: IReport, index) => {
                         return <ReportCard key={report.uuid} date={report.created} time={report.created}
                                            address={report.location_link.adress} status={report.status}
-                                           type={report.type} username='Undefined' uuid={report.uuid}/>
+                                           type={report.type} username='Utilisateur' uuid={report.uuid}/>
 
                     }) : <div className="lds-ripple">
                         <div></div>
